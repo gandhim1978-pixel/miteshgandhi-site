@@ -127,7 +127,8 @@
   }
   .posts { list-style: none; margin: 0; padding: 0; }
   .posts li { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
-  .posts .title { font: 400 1.45rem/1.3 var(--serif); }
+  .posts .title { font: 400 1.45rem/1.3 var(--serif); text-decoration: none; display: block; }
+  .posts .title:hover { text-decoration: underline; }
   .posts .note { display: block; color: var(--muted); font-size: 0.95rem; }
 
   /* Credentials */
@@ -243,10 +244,12 @@
       <p class="intro">A weekly series on the art of making people feel valued, for optometry colleagues and anyone who serves others.</p>
       <blockquote>Every patient walks in wanting two things: to see clearly, and to be seen.</blockquote>
       <ul class="posts">
-        <li><span class="title">The first ten seconds of an eye test</span><span class="note">Coming soon</span></li>
-        <li><span class="title">Listening before looking</span><span class="note">Coming soon</span></li>
-        <li><span class="title">Why people remember how you made them feel</span><span class="note">Coming soon</span></li>
+        <li><a class="title" href="/reflections.html#wanted-to-disappear">For most of my childhood, I wanted to disappear</a></li>
+        <li><a class="title" href="/reflections.html#looking-vs-seeing">Looking and seeing are not the same thing</a></li>
+        <li><a class="title" href="/reflections.html#first-ten-seconds">The first ten seconds</a></li>
+        <li><a class="title" href="/reflections.html#stillness">Starting the day in stillness</a></li>
       </ul>
+      <p style="margin:2rem 0 0"><a class="btn primary" style="background:var(--cobalt);color:#fff;border-color:var(--cobalt)" href="/reflections.html">Read all reflections</a></p>
     </div>
   </section>
 
