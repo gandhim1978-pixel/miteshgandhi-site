@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Mitesh Gandhi | Reflections</title>
+<link>https://miteshgandhi.com/reflections.html</link>
+<description>Weekly reflections from an optometrist on the art of seeing, and being seen.</description>
+<language>en-gb</language>
+<atom:link href="https://miteshgandhi.com/feed.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Tue, 13 Oct 2026 16:00:00 +0100</lastBuildDate>
+<!--  NEW ITEMS GO HERE, newest first. Release one reflection per week.  -->
+<item>
+<title>For most of my childhood, I wanted to disappear</title>
+<link>https://miteshgandhi.com/reflections.html#wanted-to-disappear</link>
+<guid isPermaLink="true">https://miteshgandhi.com/reflections.html#wanted-to-disappear</guid>
+<pubDate>Tue, 13 Oct 2026 16:00:00 +0100</pubDate>
+<description>At four years old, white patches began to appear around my eyes and across my body. Today I spend my working days looking into people's eyes, and I've learned that looking and seeing are not the same thing.</description>
+</item>
+</channel>
+</rss>
