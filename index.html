@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mitesh Gandhi | Optometrist, dry eye clinician and writer</title>
-<meta name="description" content="Mitesh Gandhi is an independent prescribing optometrist and dry eye clinician in Cambridge, and writes Being Seen, a series on the art of making people feel valued.">
+<title>Mitesh Gandhi | On the art of seeing, and being seen</title>
+<meta name="description" content="Mitesh Gandhi is an optometrist in Cambridge who writes and speaks on the art of seeing, and being seen: reflection, presence and making people feel valued.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -150,6 +150,21 @@
     word-break: break-word;
   }
   footer { background: var(--cobalt-deep); color: #9AA4C9; font-size: 0.875rem; padding: 2rem 0 2.5rem; }
+  .story-teaser { background: var(--cobalt); color: #EEF1FA; border-bottom: 0; }
+  .story-teaser .kicker { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fluor); margin: 0 0 1rem; }
+  .story-teaser blockquote { font: italic 400 clamp(1.9rem, 5vw, 2.8rem)/1.2 var(--serif); margin: 0 0 1.5rem; max-width: 36rem; }
+  .story-teaser p { color: #C9D0EA; max-width: 36rem; margin: 0 0 2rem; }
+  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .portrait { margin: 0; justify-self: start; width: min(100%, 22rem); }
+  .portrait img {
+    display: block; width: 100%; height: auto;
+    border-radius: 14px;
+    box-shadow: 0 0 0 1.5px var(--fluor), 0 24px 60px rgba(5, 10, 40, 0.45);
+  }
+  @media (min-width: 860px) {
+    .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
+    .portrait { justify-self: end; width: 100%; max-width: 24rem; }
+  }
 </style>
 </head>
 <body>
@@ -164,52 +179,61 @@
     <circle cx="200" cy="200" r="152" style="--o:.27;animation-delay:.55s"/>
     <circle cx="200" cy="200" r="184" style="--o:.17;animation-delay:.65s"/>
   </svg>
-  <div class="wrap">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
     <h1>Mitesh Gandhi</h1>
-    <p class="lede">Optometrist and dry eye clinician in Cambridge. I write about the quiet skill of making people feel seen, in practice and in life.</p>
+    <p class="lede">An optometrist on the art of seeing, and being seen. I write and speak about reflection, presence and the quiet skill of making people feel valued, in the consulting room and in life.</p>
     <div class="actions">
       <a class="btn primary" href="#contact">Invite me to speak</a>
-      <a class="btn ghost" href="#being-seen">Read Being Seen</a>
+      <a class="btn ghost" href="#my-story">Read my story</a>
     </div>
+    </div>
+    <figure class="portrait">
+      <img src="/mitesh.jpg" alt="Mitesh Gandhi, smiling, seated in his Cambridge practice in a navy velvet jacket" width="900" height="1124">
+    </figure>
   </div>
 </header>
 
 <main>
   <section class="block" id="work">
     <div class="wrap">
-      <h2>What I do</h2>
-      <p class="intro">My years in optometry have taught me two things: the eye surface rewards patience, and people remember how you made them feel long after they forget the test.</p>
+      <h2>What I explore</h2>
+      <p class="intro">My work is about sight. My life has taught me that looking and seeing are not the same thing. Here is where the two meet.</p>
 
       <div class="strands">
         <div class="strand">
-          <h3>Clinical work</h3>
-          <div>
-            <p>I run dry eye and anterior segment care at Clamp Optometrists on St Andrew's Street, Cambridge, as an independent prescriber.</p>
-            <ul>
-              <li>Dry eye assessment and treatment</li>
-              <li>Scleral lens fitting</li>
-              <li>Anterior segment diagnostics</li>
-            </ul>
-          </div>
-        </div>
-        <div class="strand">
-          <h3>Speaking and consultancy</h3>
-          <div>
-            <p>I help practices build dry eye services and talk to teams about patient experience: how the first ten seconds shape the whole appointment.</p>
-            <ul>
-              <li>Setting up a dry eye clinic in primary care</li>
-              <li>Talks for optical teams, LOCs and conferences</li>
-              <li>Mentoring optometrists moving into specialist work</li>
-            </ul>
-          </div>
-        </div>
-        <div class="strand">
           <h3>Reflection</h3>
           <div>
-            <p>Meditation, counselling and introspection shape how I practise. I share what I learn, from the consulting room and from my own life.</p>
+            <p>Introspection, meditation and yoga shape how I live and how I practise. I share honest reflections on confidence, presence, blind spots and finding clarity, drawn from my own story.</p>
+          </div>
+        </div>
+        <div class="strand">
+          <h3>Being seen</h3>
+          <div>
+            <p>Every patient wants two things: to see clearly, and to be seen. I talk to teams and audiences about presence, listening and how people feel in your care.</p>
+            <ul>
+              <li>Talks for optical teams, LOCs and conferences</li>
+              <li>Workshops on patient experience and communication</li>
+              <li>Mentoring clinicians who want to connect more deeply</li>
+            </ul>
+          </div>
+        </div>
+        <div class="strand">
+          <h3>Clinical life</h3>
+          <div>
+            <p>I'm an independent prescribing optometrist at Clamp Optometrists, Cambridge, with a special interest in dry eye, scleral lenses and anterior segment care. I share what practice teaches me, and help other practices develop dry eye services.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block story-teaser" id="my-story">
+    <div class="wrap">
+      <p class="kicker">My story</p>
+      <blockquote>Sometimes the path you didn't choose turns out to be the one you were made for.</blockquote>
+      <p>A boy with a way with words, a father who said "science", and how the scientist and the storyteller found each other.</p>
+      <a class="btn primary" href="/story.html">Read The Path That Chose Me</a>
     </div>
   </section>
 
