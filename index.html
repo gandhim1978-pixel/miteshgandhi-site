@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mitesh Gandhi | Optometrist, dry eye clinician and writer</title>
+<meta name="description" content="Mitesh Gandhi is an independent prescribing optometrist and dry eye clinician in Cambridge, and writes Being Seen, a series on the art of making people feel valued.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cobalt: #1B2F7A;      /* the slit lamp's cobalt blue filter */
+    --cobalt-deep: #121F55;
+    --fluor: #D6EA4C;       /* fluorescein under cobalt light */
+    --paper: #F4F6FB;
+    --ink: #16204A;
+    --muted: #4B5578;
+    --rule: #CCD3E6;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --sans: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--sans);
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--fluor); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- Hero: the one bold moment ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 78% 45%, var(--cobalt) 0%, var(--cobalt-deep) 70%);
+    color: #EEF1FA;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+  }
+  .rings {
+    position: absolute;
+    right: -18vmax; top: 50%;
+    width: 95vmax; height: 95vmax;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .rings circle {
+    fill: none;
+    stroke: var(--fluor);
+    stroke-width: 1.4;
+    opacity: 0;
+    animation: mire 1.6s ease-out forwards;
+  }
+  @media (max-width: 600px) {
+    .rings { right: -70vmax; top: 78%; }
+  }
+  @keyframes mire { to { opacity: var(--o); } }
+  @media (prefers-reduced-motion: reduce) {
+    .rings circle { animation: none; opacity: var(--o); }
+  }
+  .hero .wrap { position: relative; padding-top: 5rem; padding-bottom: 5rem; width: 100%; }
+  .hero h1 {
+    font: 400 clamp(3.4rem, 11vw, 7.5rem)/0.95 var(--serif);
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.01em;
+    max-width: 9ch;
+  }
+  .hero p.lede {
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.5;
+    max-width: 34rem;
+    margin: 0 0 2.25rem;
+    color: #D9DEF0;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid var(--fluor);
+  }
+  .btn.primary { background: var(--fluor); color: var(--cobalt-deep); }
+  .btn.ghost { color: var(--fluor); }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 5rem 0; border-bottom: 1px solid var(--rule); }
+  h2 {
+    font: 400 clamp(2.2rem, 5vw, 3.2rem)/1.05 var(--serif);
+    margin: 0 0 1.25rem;
+  }
+  .intro { max-width: 40rem; color: var(--muted); margin: 0 0 3rem; }
+
+  .strands { display: grid; gap: 0; }
+  .strand {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 3rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .strand h3 { font: 600 1.15rem/1.3 var(--sans); margin: 0; }
+  .strand p { margin: 0; max-width: 40rem; }
+  .strand ul { margin: 0.75rem 0 0; padding-left: 1.1rem; color: var(--muted); }
+  @media (min-width: 760px) {
+    .strand { grid-template-columns: 16rem 1fr; }
+  }
+
+  /* Being Seen */
+  .seen { background: #FFFFFF; }
+  .seen blockquote {
+    font: italic 400 clamp(1.6rem, 3.6vw, 2.3rem)/1.25 var(--serif);
+    margin: 0 0 3rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--cobalt);
+    max-width: 38rem;
+  }
+  .posts { list-style: none; margin: 0; padding: 0; }
+  .posts li { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+  .posts .title { font: 400 1.45rem/1.3 var(--serif); }
+  .posts .note { display: block; color: var(--muted); font-size: 0.95rem; }
+
+  /* Credentials */
+  .creds { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+  .creds li {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.5rem 0.85rem;
+    background: #FFFFFF;
+    font-size: 0.95rem;
+  }
+
+  /* Contact */
+  .contact { background: var(--cobalt-deep); color: #EEF1FA; border-bottom: 0; }
+  .contact .intro { color: #C9D0EA; }
+  .contact a.mail {
+    font: 400 clamp(1.8rem, 5vw, 2.8rem)/1.2 var(--serif);
+    color: var(--fluor);
+    text-underline-offset: 6px;
+    word-break: break-word;
+  }
+  footer { background: var(--cobalt-deep); color: #9AA4C9; font-size: 0.875rem; padding: 2rem 0 2.5rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="22"  style="--o:.95;animation-delay:.05s"/>
+    <circle cx="200" cy="200" r="44"  style="--o:.8;animation-delay:.15s"/>
+    <circle cx="200" cy="200" r="68"  style="--o:.65;animation-delay:.25s"/>
+    <circle cx="200" cy="200" r="94"  style="--o:.5;animation-delay:.35s"/>
+    <circle cx="200" cy="200" r="122" style="--o:.38;animation-delay:.45s"/>
+    <circle cx="200" cy="200" r="152" style="--o:.27;animation-delay:.55s"/>
+    <circle cx="200" cy="200" r="184" style="--o:.17;animation-delay:.65s"/>
+  </svg>
+  <div class="wrap">
+    <h1>Mitesh Gandhi</h1>
+    <p class="lede">Optometrist and dry eye clinician in Cambridge. I write about the quiet skill of making people feel seen, in practice and in life.</p>
+    <div class="actions">
+      <a class="btn primary" href="#contact">Invite me to speak</a>
+      <a class="btn ghost" href="#being-seen">Read Being Seen</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>What I do</h2>
+      <p class="intro">My years in optometry have taught me two things: the eye surface rewards patience, and people remember how you made them feel long after they forget the test.</p>
+
+      <div class="strands">
+        <div class="strand">
+          <h3>Clinical work</h3>
+          <div>
+            <p>I run dry eye and anterior segment care at Clamp Optometrists on St Andrew's Street, Cambridge, as an independent prescriber.</p>
+            <ul>
+              <li>Dry eye assessment and treatment</li>
+              <li>Scleral lens fitting</li>
+              <li>Anterior segment diagnostics</li>
+            </ul>
+          </div>
+        </div>
+        <div class="strand">
+          <h3>Speaking and consultancy</h3>
+          <div>
+            <p>I help practices build dry eye services and talk to teams about patient experience: how the first ten seconds shape the whole appointment.</p>
+            <ul>
+              <li>Setting up a dry eye clinic in primary care</li>
+              <li>Talks for optical teams, LOCs and conferences</li>
+              <li>Mentoring optometrists moving into specialist work</li>
+            </ul>
+          </div>
+        </div>
+        <div class="strand">
+          <h3>Reflection</h3>
+          <div>
+            <p>Meditation, counselling and introspection shape how I practise. I share what I learn, from the consulting room and from my own life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block seen" id="being-seen">
+    <div class="wrap">
+      <h2>Being Seen</h2>
+      <p class="intro">A weekly series on the art of making people feel valued, for optometry colleagues and anyone who serves others.</p>
+      <blockquote>Every patient walks in wanting two things: to see clearly, and to be seen.</blockquote>
+      <ul class="posts">
+        <li><span class="title">The first ten seconds of an eye test</span><span class="note">Coming soon</span></li>
+        <li><span class="title">Listening before looking</span><span class="note">Coming soon</span></li>
+        <li><span class="title">Why people remember how you made them feel</span><span class="note">Coming soon</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="credentials">
+    <div class="wrap">
+      <h2>Credentials</h2>
+      <ul class="creds">
+        <li>MCOptom</li>
+        <li>DipTp(IP), Independent Prescriber</li>
+        <li>GOC 01-18379</li>
+        <li>Cambridgeshire LOC committee member</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <h2>Get in touch</h2>
+      <p class="intro">For speaking, consultancy or collaboration, email me directly.</p>
+      
+      <a class="mail" href="mailto:hello@miteshgandhi.com">hello@miteshgandhi.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Mitesh Gandhi. Clinical appointments are booked through Clamp Optometrists, Cambridge.</div>
+</footer>
+
+</body>
+</html>
