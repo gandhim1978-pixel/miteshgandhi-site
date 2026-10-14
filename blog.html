@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Articles | Mitesh Gandhi</title>
+<meta name="description" content="Articles by Mitesh Gandhi and fellow Sahaja Yoga writers on eyes, meditation, stress and the art of seeing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cobalt: #1B2F7A;
+    --cobalt-deep: #121F55;
+    --fluor: #D6EA4C;
+    --paper: #F4F6FB;
+    --ink: #16204A;
+    --muted: #4B5578;
+    --rule: #CCD3E6;
+    --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --read: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+    --sans: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--sans); }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  :focus-visible { outline: 3px solid var(--fluor); outline-offset: 3px; border-radius: 2px; }
+
+  .top { background: var(--cobalt-deep); padding: 1rem 1.5rem; }
+  .top a { text-decoration: none; font-weight: 600; color: var(--fluor); }
+  header.head {
+    background: radial-gradient(circle at 85% 30%, var(--cobalt) 0%, var(--cobalt-deep) 75%);
+    color: #EEF1FA;
+    padding: 4rem 1.5rem 3.5rem;
+  }
+  .inner { max-width: 60rem; margin: 0 auto; }
+  .kicker { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fluor); margin: 0 0 1rem; }
+  h1 { font: 400 clamp(2.8rem, 9vw, 4.6rem)/1 var(--display); margin: 0 0 1rem; }
+  .head p { color: #C9D0EA; margin: 0; max-width: 34rem; }
+
+  main { max-width: 60rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .grid { display: grid; gap: 1.75rem; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+  .card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column; text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(18,31,85,.12); }
+  .card .pic { aspect-ratio: 16 / 9; background: var(--cobalt-deep); object-fit: cover; width: 100%; }
+  .card .body { padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+  .card .date { font: 600 0.78rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--cobalt); margin: 0 0 0.6rem; }
+  .card h2 { font: 400 1.65rem/1.15 var(--display); margin: 0 0 0.75rem; }
+  .card p { font: 400 1rem/1.6 var(--read); color: var(--muted); margin: 0 0 1.1rem; flex: 1; }
+  .card .more { font-weight: 600; color: var(--cobalt); }
+  .status { text-align: center; color: var(--muted); padding: 2rem 0; }
+  .status a { color: var(--cobalt); }
+
+  .cta { background: var(--cobalt-deep); color: #EEF1FA; padding: 3rem 1.5rem; text-align: center; }
+  .cta p { margin: 0 0 1.25rem; color: #C9D0EA; }
+  .btn { display: inline-block; padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600; text-decoration: none; background: var(--fluor); color: var(--cobalt-deep); }
+  footer { background: var(--cobalt-deep); color: #9AA4C9; font-size: 0.875rem; padding: 0 1.5rem 2.5rem; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<nav class="top"><a href="/">← Mitesh Gandhi</a></nav>
+
+<header class="head">
+  <div class="inner">
+    <p class="kicker">Writing</p>
+    <h1>Articles</h1>
+    <p>Longer pieces on our eyes, our minds and the art of truly seeing, from me and fellow writers in the Sahaja Yoga community whose work I’m proud to share. New articles appear here automatically.</p>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="posts" aria-live="polite"></div>
+  <p class="status" id="status">Loading articles…</p>
+</main>
+
+<section class="cta">
+  <p>Enjoyed an article? I'd love to hear what it stirred in you.</p>
+  <a class="btn" href="mailto:hello@miteshgandhi.com">Get in touch</a>
+</section>
+
+<footer>© 2026 Mitesh Gandhi</footer>
+
+<script>
+  /* ===== SETTINGS ===== */
+  var BLOG = "https://superhumanscoming.blogspot.com";
+  var ONLY_MY_POSTS = false;         // true = only posts containing AUTHOR_NAME; false = every post on the blog
+  var AUTHOR_NAME = "Mitesh Gandhi";
+  var MAX_POSTS = 50;
+  /* ==================== */
+
+  function strip(html) {
+    var d = document.createElement("div");
+    d.innerHTML = html;
+    return (d.textContent || "").replace(/\s+/g, " ").trim();
+  }
+  function firstImage(html) {
+    var m = html.match(/<img[^>]+src="([^"]+)"/i);
+    return m ? m[1] : "";
+  }
+  function bigger(url) {
+    return url.replace(/\/s\d+(-c)?\//, "/w800-h450-c/").replace(/=s\d+(-c)?$/, "=w800-h450-c");
+  }
+
+  function showPosts(data) {
+    var grid = document.getElementById("posts");
+    var status = document.getElementById("status");
+    var entries = (data.feed && data.feed.entry) || [];
+    var shown = 0;
+
+    entries.forEach(function (e) {
+      var html = (e.content && e.content.$t) || (e.summary && e.summary.$t) || "";
+      if (ONLY_MY_POSTS && html.indexOf(AUTHOR_NAME) === -1) return;
+
+      var link = (e.link || []).filter(function (l) { return l.rel === "alternate"; })[0];
+      if (!link) return;
+
+      var img = (e.media$thumbnail && e.media$thumbnail.url) || firstImage(html);
+      var text = strip(html).replace(new RegExp("^By " + AUTHOR_NAME + "\\s*", "i"), "");
+      var snippet = text.length > 170 ? text.slice(0, 170).replace(/\s\S*$/, "") + "…" : text;
+      var date = new Date(e.published.$t).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+      var a = document.createElement("a");
+      a.className = "card";
+      a.href = link.href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML =
+        (img ? '<img class="pic" alt="" loading="lazy">' : "") +
+        '<div class="body"><p class="date"></p><h2></h2><p class="snip"></p><span class="more">Read the article →</span></div>';
+      if (img) a.querySelector(".pic").src = bigger(img);
+      a.querySelector(".date").textContent = date;
+      a.querySelector("h2").textContent = e.title.$t;
+      a.querySelector(".snip").textContent = snippet;
+      grid.appendChild(a);
+      shown++;
+    });
+
+    status.innerHTML = shown ? "" : 'No articles yet. <a href="' + BLOG + '" target="_blank" rel="noopener">Visit the blog</a>.';
+    if (!shown) return;
+    status.style.display = "none";
+  }
+
+  (function load() {
+    var s = document.createElement("script");
+    s.src = BLOG + "/feeds/posts/default?alt=json-in-script&max-results=" + MAX_POSTS + "&callback=showPosts";
+    s.onerror = function () {
+      document.getElementById("status").innerHTML =
+        'Articles couldn’t load just now. <a href="' + BLOG + '" target="_blank" rel="noopener">Read them on the blog</a>.';
+    };
+    document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>
