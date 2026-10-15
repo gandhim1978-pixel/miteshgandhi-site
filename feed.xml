@@ -5,12 +5,19 @@
 <description>Weekly reflections from an optometrist on the art of seeing, and being seen.</description>
 <language>en-gb</language>
 <atom:link href="https://miteshgandhi.com/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Tue, 13 Oct 2026 16:00:00 +0100</lastBuildDate>
+<lastBuildDate>Thu, 15 Oct 2026 16:00:00 +0100</lastBuildDate>
 <!--  NEW ITEMS GO HERE, newest first. Release one reflection per week.  -->
 <item>
+<title>The letter that took me back to 1986</title>
+<link>https://miteshgandhi.com/reflection-letters.html</link>
+<guid isPermaLink="true">https://miteshgandhi.com/reflection-letters.html</guid>
+<pubDate>Thu, 15 Oct 2026 16:00:00 +0100</pubDate>
+<description>This week, a handwritten letter arrived from a patient. As I read it, I was back in our living room in 1986, watching my grandma cry.</description>
+</item>
+<item>
 <title>For most of my childhood, I wanted to disappear</title>
-<link>https://miteshgandhi.com/reflections.html#wanted-to-disappear</link>
-<guid isPermaLink="true">https://miteshgandhi.com/reflections.html#wanted-to-disappear</guid>
+<link>https://miteshgandhi.com/reflection-wanted-to-disappear.html</link>
+<guid isPermaLink="true">https://miteshgandhi.com/reflection-wanted-to-disappear.html</guid>
 <pubDate>Tue, 13 Oct 2026 16:00:00 +0100</pubDate>
 <description>At four years old, white patches began to appear around my eyes and across my body. Today I spend my working days looking into people's eyes, and I've learned that looking and seeing are not the same thing.</description>
 </item>
