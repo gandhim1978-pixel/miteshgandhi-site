@@ -33,15 +33,20 @@ Help thoughtful readers get to know Mitesh's story, trust him and follow his wri
 - No patient-identifiable details or images.
 - Never invent facts. If a detail is unknown, ask Mitesh.
 
-## How to publish a new reflection
+## How to add a new reflection (publishing queue)
+
+New pieces are never published straight away. They go into a queue and a GitHub Action (.github/workflows/publish-queue.yml) publishes them every Tuesday at 7am UK time, one per week.
 
 1. Copy an existing reflection page (e.g. reflection-mountain.html) as the template; keep styling identical.
-2. Name it reflection-<short-slug>.html. Update title, meta description, og tags, kicker, h1, article body and pager link.
-3. Images go in the site root with clear names, inside a div with class "photo", with good alt text. Captions in italic cobalt, never faint grey.
-4. Add the piece to the top of the list in reflections.html.
-5. Add an item to feed.xml under the "NEW ITEMS GO HERE" comment and update lastBuildDate.
-6. Roughly one reflection per week unless Mitesh says otherwise.
-7. Show Mitesh a short summary and ask before saving. When he approves, save the change directly to the main branch so it goes live (Cloudflare publishes within a couple of minutes).
+2. Save it as queue/reflection-<short-slug>.html. Update title, meta description, og tags, kicker, h1 and article body. Leave the pager as `<nav class="pager"></nav>`: the publish script fills it in and adds a "next" link to the previous piece.
+3. Images go in queue/ with clear names (referenced as src="/name.jpg"), inside a div with class "photo", with good alt text. Captions in italic cobalt, never faint grey. They move to the site root on release.
+4. Run `python3 scripts/queue.py add <short-slug> --label "<list label>" --summary "<short teaser>"`. The label is what reflections.html shows (e.g. "Turning Points 02", "Science and Spirit 02", "Reflection 07" for Being Seen); count queued pieces when numbering. It takes the next free Tuesday automatically; `--date YYYY-MM-DD` overrides.
+5. Do not edit reflections.html or feed.xml by hand; the script does that on release.
+6. Show Mitesh a short summary, including the release date, and ask before saving. When he approves, save directly to main so the Action can see it.
+
+When Mitesh asks "what's scheduled?", run `python3 scripts/queue.py list` and show him the dates and titles in plain words. `python3 scripts/queue.py remove <slug>` takes a piece out; to move a date, edit queue/queue.json.
+
+Queued pages are hidden from visitors by _redirects until release. To publish early, run the "Publish queued reflections" Action by hand on GitHub after changing the piece's date to today.
 
 ## Contact
 

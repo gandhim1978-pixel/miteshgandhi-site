@@ -1,0 +1,45 @@
+name: Publish queued reflections
+
+on:
+  schedule:
+    # Tuesdays at 7am UK time. GitHub uses UTC, so run at both 06:00 UTC
+    # (7am in summer, BST) and 07:00 UTC (7am in winter, GMT). The script
+    # only publishes once it is 7am or later in London, so the early run
+    # is a no-op in winter.
+    - cron: "0 6 * * 2"
+    - cron: "0 7 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-queue
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Publish anything due
+        run: python3 scripts/queue.py publish
+
+      - name: Save to main
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish scheduled reflection"
+          git push origin main

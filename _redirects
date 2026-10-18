@@ -1,0 +1,2 @@
+# Keep queued reflections private until their release date
+/queue/* / 302
