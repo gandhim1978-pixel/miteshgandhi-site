@@ -12,7 +12,7 @@ og:image:width, og:image:height and twitter:image on the page.
 
 It also makes ig/<slug>.jpg, 1080 wide, for the image in feed-spirit.xml
 (which posts to Instagram): the article's photo uncropped, with cobalt at the
-sides if it is taller than Instagram's 4:5 limit.
+sides (or top and bottom) if it is outside Instagram's 4:5 to 1.91:1 range.
 
 Run: python3 scripts/og_images.py   (re-run after adding or changing a piece)
 """
@@ -27,6 +27,7 @@ OUT = ROOT / "og"
 IG_OUT = ROOT / "ig"
 IG_W = 1080
 IG_TALLEST = 4 / 5  # Instagram crops anything taller than 4:5
+IG_WIDEST = 1.91  # or wider than 1.91:1
 FONTS = Path(__file__).resolve().parent / "fonts"
 W, H = 1200, 630
 COBALT_DEEP = (18, 31, 85)
@@ -117,6 +118,11 @@ def build_ig(photo, kicker, title):
             W, H = 1200, 630
         return img
     src = Image.open(photo).convert("RGB")
+    if src.width / src.height > IG_WIDEST:
+        src = src.resize((IG_W, round(src.height * IG_W / src.width)), Image.LANCZOS)
+        img = Image.new("RGB", (IG_W, -(-IG_W * 100 // round(IG_WIDEST * 100))), COBALT_DEEP)
+        img.paste(src, (0, (img.height - src.height) // 2))
+        return img
     if src.width / src.height >= IG_TALLEST:
         return src.resize((IG_W, round(src.height * IG_W / src.width)), Image.LANCZOS)
     h = round(IG_W / IG_TALLEST)
