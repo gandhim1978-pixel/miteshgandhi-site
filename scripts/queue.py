@@ -5,11 +5,13 @@ Queued pieces live in queue/ (page + any images) and are listed in
 queue/queue.json with a release date. Every Tuesday at 7am UK time a GitHub
 Action runs `publish`, which moves any piece whose date has arrived into the
 site root, adds it to reflections.html and feed.xml (plus feed-spirit.xml,
-except for the pieces in SPIRIT_FEED_SKIP), and links the pager.
+except for the pieces in SPIRIT_FEED_SKIP), and links the pager. In
+feed-spirit.xml the description is the piece's "petal": a 60 to 100 word
+short version (hook, scene, turning point, moral, closing question).
 
 Commands:
   python3 scripts/queue.py list
-  python3 scripts/queue.py add <slug> --label "Turning Points 02" [--summary "..."] [--date YYYY-MM-DD]
+  python3 scripts/queue.py add <slug> --label "Turning Points 02" [--summary "..."] [--petal "..."] [--date YYYY-MM-DD]
   python3 scripts/queue.py remove <slug>
   python3 scripts/queue.py publish [--now YYYY-MM-DDTHH:MM]
 """
@@ -104,8 +106,11 @@ def cmd_add(args):
     text = page.read_text()
     files = sorted({m for m in re.findall(r'src="/([^"/]+)"', text) if (QUEUE_DIR / m).exists()})
     summary = args.summary or page_meta(page)[1]
-    items.append({"slug": args.slug, "date": date.isoformat(), "label": args.label,
-                  "summary": summary, "files": files})
+    item = {"slug": args.slug, "date": date.isoformat(), "label": args.label,
+            "summary": summary, "files": files}
+    if args.petal:
+        item["petal"] = args.petal.replace("\\n", "\n")
+    items.append(item)
     save(items)
     print(f"Queued {page.name} for {nice_date(date.isoformat())}, 7am.")
 
@@ -168,16 +173,19 @@ def publish_one(item, when):
     # Feeds: every piece goes in feed.xml, and in feed-spirit.xml unless skipped
     stamp = format_datetime(when)
     url = f"https://miteshgandhi.com/{name}"
-    entry = ("<item>\n"
-             f"<title>{html.escape(title, quote=False)}</title>\n"
-             f"<link>{url}</link>\n"
-             f'<guid isPermaLink="true">{url}</guid>\n'
-             f"<pubDate>{stamp}</pubDate>\n"
-             f"<description>{html.escape(desc, quote=False)}</description>\n"
-             "</item>\n")
-    add_to_feed("feed.xml", entry, stamp)
+
+    def entry(description):
+        return ("<item>\n"
+                f"<title>{html.escape(title, quote=False)}</title>\n"
+                f"<link>{url}</link>\n"
+                f'<guid isPermaLink="true">{url}</guid>\n'
+                f"<pubDate>{stamp}</pubDate>\n"
+                f"<description>{html.escape(description, quote=False)}</description>\n"
+                "</item>\n")
+    add_to_feed("feed.xml", entry(desc), stamp)
     if slug not in SPIRIT_FEED_SKIP:
-        add_to_feed("feed-spirit.xml", entry, stamp)
+        # The spirit feed carries the short "petal" version; the full piece stays on the site
+        add_to_feed("feed-spirit.xml", entry(item.get("petal", desc)), stamp)
     print(f"Published {name}: {title}")
 
 
@@ -214,6 +222,7 @@ def main():
     a.add_argument("slug")
     a.add_argument("--label", required=True, help='List label, e.g. "Turning Points 02"')
     a.add_argument("--summary", help="Short teaser for reflections.html (defaults to the meta description)")
+    a.add_argument("--petal", help="60-100 word short version for feed-spirit.xml (\\n for a line break)")
     a.add_argument("--date", help="Override the release date (YYYY-MM-DD)")
     a.set_defaults(fn=cmd_add)
     r = sub.add_parser("remove")
