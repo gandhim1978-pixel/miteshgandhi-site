@@ -241,6 +241,17 @@ def archive_friday(now):
     return day - dt.timedelta(days=(day - ARCHIVE_START).days % 14)
 
 
+def archive_image(item):
+    """An ig/ image on this site ("image"), or the post's own picture elsewhere ("image_url")."""
+    if item.get("image"):
+        return feed_image(item["image"])
+    if item.get("image_url"):
+        url = html.escape(item["image_url"])
+        return (f'<enclosure url="{url}" length="0" type="image/jpeg"/>\n'
+                f'<media:content url="{url}" medium="image" type="image/jpeg"/>\n')
+    return ""
+
+
 def publish_archive(now):
     if not ARCHIVE_FILE.exists():
         return
@@ -261,7 +272,7 @@ def publish_archive(now):
              f'<guid isPermaLink="false">{guid}</guid>\n'
              f"<pubDate>{stamp}</pubDate>\n"
              f"<description>{html.escape(item['petal'], quote=False)}</description>\n"
-             f"{feed_image(item['image']) if item.get('image') else ''}"
+             f"{archive_image(item)}"
              "</item>\n")
     add_to_feed("feed-spirit.xml", entry, stamp)
     archive["posted"].append({**item, "date": friday.isoformat(), "guid": guid})
