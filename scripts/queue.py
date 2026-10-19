@@ -31,7 +31,7 @@ LONDON = ZoneInfo("Europe/London")
 RELEASE_HOUR = 7
 TUESDAY = 1  # Monday is 0
 # Every piece also goes in feed-spirit.xml (which posts to Facebook), except these slugs
-SPIRIT_FEED_SKIP = ("two-years", "never-alone", "back-to-school", "teaching")
+SPIRIT_FEED_SKIP = ("never-alone", "back-to-school", "teaching")
 
 
 def load():
