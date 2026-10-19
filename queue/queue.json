@@ -73,9 +73,18 @@
       ]
     },
     {
-      "slug": "one-day-a-week",
+      "slug": "two-years",
       "date": "2026-12-15",
       "label": "Turning Points 08",
+      "summary": "This is the hardest reflection I've written.",
+      "files": [
+        "winding-river.jpg"
+      ]
+    },
+    {
+      "slug": "one-day-a-week",
+      "date": "2026-12-22",
+      "label": "Turning Points 09",
       "summary": "2017 was one of the hardest years I have known. So I took the small opportunities in front of me.",
       "files": [
         "stepping-stones.jpg"
@@ -83,8 +92,8 @@
     },
     {
       "slug": "never-alone",
-      "date": "2026-12-22",
-      "label": "Turning Points 09",
+      "date": "2026-12-29",
+      "label": "Turning Points 10",
       "summary": "There's one name missing from every trophy we've ever lifted. Everyone's.",
       "files": [
         "two-trophies.jpg"
@@ -92,7 +101,7 @@
     },
     {
       "slug": "light-that-bends",
-      "date": "2026-12-29",
+      "date": "2027-01-05",
       "label": "Science and Spirit 04",
       "summary": "Pass white light through a prism and it opens into a rainbow. The colours were there all along.",
       "files": [
@@ -101,8 +110,8 @@
     },
     {
       "slug": "back-to-school",
-      "date": "2027-01-05",
-      "label": "Turning Points 10",
+      "date": "2027-01-12",
+      "label": "Turning Points 11",
       "summary": "In 2020, at 42, I began training as an Independent Prescriber. Twenty years after qualifying, I sat exams again.",
       "files": [
         "books-and-glasses.jpg"
@@ -110,11 +119,182 @@
     },
     {
       "slug": "teaching",
-      "date": "2027-01-12",
-      "label": "Turning Points 11",
+      "date": "2027-01-19",
+      "label": "Turning Points 12",
       "summary": "I walked in expecting to share what I knew. Week after week, I walked out having learned more than I taught.",
       "files": [
         "empty-lecture-hall.jpg"
+      ]
+    },
+    {
+      "slug": "control",
+      "date": "2027-01-26",
+      "label": "Turning Points 13",
+      "summary": "Some days, work is the calmest place in my life.",
+      "files": [
+        "red-poppy.jpg"
+      ]
+    },
+    {
+      "slug": "innocence",
+      "date": "2027-02-02",
+      "label": "The Inner Journey 01",
+      "summary": "What if spiritual growth isn't about becoming someone new, but rediscovering who we were before the world shaped us?",
+      "files": [
+        "paper-boat.jpg"
+      ]
+    },
+    {
+      "slug": "vitiligo",
+      "date": "2027-02-09",
+      "label": "Turning Points 14",
+      "summary": "When people meet me, they see the suit, the smile, the practice.",
+      "files": [
+        "variegated-leaf.jpg"
+      ]
+    },
+    {
+      "slug": "busy-mind",
+      "date": "2027-02-16",
+      "label": "The Inner Journey 02",
+      "summary": "We have become experts at thinking. But have we forgotten how to be still?",
+      "files": [
+        "misty-lake.jpg"
+      ]
+    },
+    {
+      "slug": "own-path",
+      "date": "2027-02-23",
+      "label": "Turning Points 15",
+      "summary": "When my sons were small, they followed me everywhere.",
+      "files": [
+        "woodland-path.jpg"
+      ]
+    },
+    {
+      "slug": "more",
+      "date": "2027-03-02",
+      "label": "The Inner Journey 03",
+      "summary": "There's always another achievement waiting to make us happy. So why does satisfaction stay just out of reach?",
+      "files": [
+        "spiral-staircase.jpg"
+      ]
+    },
+    {
+      "slug": "across-the-road",
+      "date": "2027-03-09",
+      "label": "Turning Points 16",
+      "summary": "My parents live across the road from us now.",
+      "files": [
+        "two-cups.jpg"
+      ]
+    },
+    {
+      "slug": "own-master",
+      "date": "2027-03-16",
+      "label": "The Inner Journey 04",
+      "summary": "It's possible to know a great deal about life and still struggle to guide your own.",
+      "files": [
+        "clay-on-wheel.jpg"
+      ]
+    },
+    {
+      "slug": "brothers",
+      "date": "2027-03-23",
+      "label": "Turning Points 17",
+      "summary": "My father met his own father properly only as a young man. Within a year, he had died.",
+      "files": [
+        "two-trees.jpg"
+      ]
+    },
+    {
+      "slug": "love",
+      "date": "2027-03-30",
+      "label": "The Inner Journey 05",
+      "summary": "Our closest relationships often teach us our greatest lessons about love.",
+      "files": [
+        "gull-in-flight.jpg"
+      ]
+    },
+    {
+      "slug": "grandmother",
+      "date": "2027-04-06",
+      "label": "Turning Points 18",
+      "summary": "My grandmother was married at twelve or thirteen.",
+      "files": [
+        "fountain-pen.jpg"
+      ]
+    },
+    {
+      "slug": "words",
+      "date": "2027-04-13",
+      "label": "The Inner Journey 06",
+      "summary": "We remember the words that hurt us. How often do we remember the words we've used to hurt others?",
+      "files": [
+        "tied-letters.jpg"
+      ]
+    },
+    {
+      "slug": "motions",
+      "date": "2027-04-20",
+      "label": "Turning Points 19",
+      "summary": "From the outside, my early twenties looked fine. I'd qualified as an optometrist. I had a profession, a family, a future.",
+      "files": [
+        "rain-window.jpg"
+      ]
+    },
+    {
+      "slug": "forgiveness",
+      "date": "2027-04-27",
+      "label": "The Inner Journey 07",
+      "summary": "How much of our present are we giving away to something that happened in the past?",
+      "files": [
+        "light-through-clouds.jpg"
+      ]
+    },
+    {
+      "slug": "dark-adaptation",
+      "date": "2027-05-04",
+      "label": "Science and Spirit 05",
+      "summary": "Walk from a bright room into darkness, and at first you see nothing. Then, slowly, shapes appear. The edge of a door. A chair. A window.",
+      "files": [
+        "night-sky.jpg"
+      ]
+    },
+    {
+      "slug": "beyond-understanding",
+      "date": "2027-05-11",
+      "label": "The Inner Journey 08",
+      "summary": "What if peace begins when we stop demanding an answer to every question?",
+      "files": [
+        "misty-mountains.jpg"
+      ]
+    },
+    {
+      "slug": "edges",
+      "date": "2027-05-18",
+      "label": "Science and Spirit 06",
+      "summary": "Hold your gaze on a single word on this page.",
+      "files": [
+        "pavement-dandelion.jpg"
+      ]
+    },
+    {
+      "slug": "collective",
+      "date": "2027-05-25",
+      "label": "The Inner Journey 09",
+      "summary": "Can we truly grow spiritually if it makes us less compassionate towards others?",
+      "files": [
+        "murmuration.jpg"
+      ]
+    },
+    {
+      "slug": "living-ascent",
+      "date": "2027-06-01",
+      "label": "The Inner Journey 10",
+      "summary": "Spiritual growth isn't a straight line. It's a living process.",
+      "files": [
+        "tree-roots.jpg"
       ]
     }
   ]

@@ -155,6 +155,11 @@ def publish_one(item, when):
     listing, n = re.subn(r'(<ul class="list">\n)', lambda m: m.group(1) + li, listing, count=1)
     if not n:
         sys.exit("Could not find the list in reflections.html.")
+    # A new strand joins the page kicker with its first piece ("Reflection NN" is Being Seen)
+    strand = re.sub(r"\s*\d+$", "", item["label"])
+    kicker = re.search(r'<p class="kicker">(.*?)</p>', listing)
+    if strand != "Reflection" and kicker and strand not in kicker.group(1):
+        listing = listing[:kicker.end(1)] + f" · {strand}" + listing[kicker.end(1):]
     listing_path.write_text(listing)
 
     # Feed
