@@ -4,7 +4,8 @@
 Queued pieces live in queue/ (page + any images) and are listed in
 queue/queue.json with a release date. Every Tuesday at 7am UK time a GitHub
 Action runs `publish`, which moves any piece whose date has arrived into the
-site root, adds it to reflections.html and feed.xml, and links the pager.
+site root, adds it to reflections.html and feed.xml (plus feed-spirit.xml for
+Science and Spirit and The Inner Journey), and links the pager.
 
 Commands:
   python3 scripts/queue.py list
@@ -29,6 +30,7 @@ QUEUE_FILE = QUEUE_DIR / "queue.json"
 LONDON = ZoneInfo("Europe/London")
 RELEASE_HOUR = 7
 TUESDAY = 1  # Monday is 0
+SPIRIT_STRANDS = ("Science and Spirit", "The Inner Journey")  # also go in feed-spirit.xml
 
 
 def load():
@@ -162,9 +164,7 @@ def publish_one(item, when):
         listing = listing[:kicker.end(1)] + f" · {strand}" + listing[kicker.end(1):]
     listing_path.write_text(listing)
 
-    # Feed
-    feed_path = ROOT / "feed.xml"
-    feed = feed_path.read_text()
+    # Feeds: every piece goes in feed.xml; Science and Spirit and The Inner Journey also in feed-spirit.xml
     stamp = format_datetime(when)
     url = f"https://miteshgandhi.com/{name}"
     entry = ("<item>\n"
@@ -174,12 +174,20 @@ def publish_one(item, when):
              f"<pubDate>{stamp}</pubDate>\n"
              f"<description>{html.escape(desc, quote=False)}</description>\n"
              "</item>\n")
+    add_to_feed("feed.xml", entry, stamp)
+    if strand in SPIRIT_STRANDS:
+        add_to_feed("feed-spirit.xml", entry, stamp)
+    print(f"Published {name}: {title}")
+
+
+def add_to_feed(filename, entry, stamp):
+    feed_path = ROOT / filename
+    feed = feed_path.read_text()
     feed, n = re.subn(r"(<!--\s*NEW ITEMS GO HERE.*?-->\n)", lambda m: m.group(1) + entry, feed, count=1)
     if not n:
-        sys.exit("Could not find the NEW ITEMS GO HERE comment in feed.xml.")
+        sys.exit(f"Could not find the NEW ITEMS GO HERE comment in {filename}.")
     feed = re.sub(r"<lastBuildDate>.*?</lastBuildDate>", f"<lastBuildDate>{stamp}</lastBuildDate>", feed)
     feed_path.write_text(feed)
-    print(f"Published {name}: {title}")
 
 
 def cmd_publish(args):

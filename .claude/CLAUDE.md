@@ -41,7 +41,7 @@ New pieces are never published straight away. They go into a queue and a GitHub 
 2. Save it as queue/reflection-<short-slug>.html. Update title, meta description, og tags, kicker, h1 and article body. Leave the pager as `<nav class="pager"></nav>`: the publish script fills it in and adds a "next" link to the previous piece.
 3. Images go in queue/ with clear names (referenced as src="/name.jpg"), inside a div with class "photo", with good alt text. Captions in italic cobalt, never faint grey. They move to the site root on release.
 4. Run `python3 scripts/queue.py add <short-slug> --label "<list label>" --summary "<short teaser>"`. The label is what reflections.html shows (e.g. "Turning Points 02", "Science and Spirit 02", "Reflection 07" for Being Seen); count queued pieces when numbering. It takes the next free Tuesday automatically; `--date YYYY-MM-DD` overrides.
-5. Do not edit reflections.html or feed.xml by hand; the script does that on release.
+5. Do not edit reflections.html, feed.xml or feed-spirit.xml by hand; the script does that on release (feed-spirit.xml carries only Science and Spirit and The Inner Journey pieces).
 6. Show Mitesh a short summary, including the release date, and ask before saving. When he approves, save directly to main so the Action can see it.
 
 When Mitesh asks "what's scheduled?", run `python3 scripts/queue.py list` and show him the dates and titles in plain words. `python3 scripts/queue.py remove <slug>` takes a piece out; to move a date, edit queue/queue.json.

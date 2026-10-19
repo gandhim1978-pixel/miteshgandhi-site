@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Mitesh Gandhi | Science and Spirit · The Inner Journey</title>
+<link>https://miteshgandhi.com/reflections.html</link>
+<description>Reflections from an optometrist on where the science of the eye meets the inner life: Science and Spirit, and The Inner Journey.</description>
+<language>en-gb</language>
+<atom:link href="https://miteshgandhi.com/feed-spirit.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Sun, 18 Oct 2026 20:00:00 +0100</lastBuildDate>
+<!--  NEW ITEMS GO HERE, newest first. Release one reflection per week.  -->
+<item>
+<title>The tree of life in the eye</title>
+<link>https://miteshgandhi.com/reflection-tree-of-life.html</link>
+<guid isPermaLink="true">https://miteshgandhi.com/reflection-tree-of-life.html</guid>
+<pubDate>Sun, 18 Oct 2026 20:00:00 +0100</pubDate>
+<description>Every day I look into the eye and see an optic disc, branching vessels, a cross behind the eyes. Science explains the how. Meditation lets me wonder at the why.</description>
+</item>
+</channel>
+</rss>
