@@ -9,6 +9,11 @@ except for the pieces in SPIRIT_FEED_SKIP), and links the pager. In
 feed-spirit.xml the description is the piece's "petal": a 60 to 100 word
 short version (hook, scene, turning point, moral, closing question).
 
+Every second Friday at 7am (from ARCHIVE_START), `publish` also adds the next
+older spiritual piece in queue/archive.json to feed-spirit.xml only, titled
+"From the archive: ...", with its petal and a new unique ID (guid), so feed
+readers treat it as a new post.
+
 Commands:
   python3 scripts/queue.py list
   python3 scripts/queue.py add <slug> --label "Turning Points 02" [--summary "..."] [--petal "..."] [--date YYYY-MM-DD]
@@ -33,6 +38,8 @@ LONDON = ZoneInfo("Europe/London")
 RELEASE_HOUR = 7
 TUESDAY = 1  # Monday is 0
 # Every piece also goes in feed-spirit.xml (which posts to Facebook), except these slugs
+ARCHIVE_FILE = QUEUE_DIR / "archive.json"
+ARCHIVE_START = dt.date(2026, 10, 23)  # first "From the archive" Friday; then every 14 days
 SPIRIT_FEED_SKIP = ("never-alone", "back-to-school", "teaching")
 
 
@@ -78,6 +85,10 @@ def nice_date(iso):
 
 
 def cmd_list(args):
+    if ARCHIVE_FILE.exists():
+        friday = archive_friday(now_london()) or ARCHIVE_START - dt.timedelta(days=14)
+        for n, a in enumerate(json.loads(ARCHIVE_FILE.read_text())["items"], 1):
+            print(f"{nice_date((friday + dt.timedelta(days=14 * n)).isoformat())}, 7am  |  From the archive  |  {a['title']}")
     items = load()
     if not items:
         print("Nothing scheduled.")
@@ -206,7 +217,7 @@ def feed_image(slug):
     path = ROOT / "ig" / f"{slug}.jpg"
     if not path.exists():
         return ""
-    url = f"https://miteshgandhi.com/ig/{slug}.jpg"
+    url = f"https://miteshgandhi.com/ig/{path.name}"
     w, h = jpeg_size(path.read_bytes())
     return (f'<enclosure url="{url}" length="{path.stat().st_size}" type="image/jpeg"/>\n'
             f'<media:content url="{url}" medium="image" type="image/jpeg" width="{w}" height="{h}"/>\n')
@@ -222,8 +233,45 @@ def add_to_feed(filename, entry, stamp):
     feed_path.write_text(feed)
 
 
+def archive_friday(now):
+    """The latest "From the archive" Friday that has reached 7am, or None before the first."""
+    day = now.date() if now.hour >= RELEASE_HOUR else now.date() - dt.timedelta(days=1)
+    if day < ARCHIVE_START:
+        return None
+    return day - dt.timedelta(days=(day - ARCHIVE_START).days % 14)
+
+
+def publish_archive(now):
+    if not ARCHIVE_FILE.exists():
+        return
+    archive = json.loads(ARCHIVE_FILE.read_text())
+    friday = archive_friday(now)
+    if friday is None or any(p["date"] == friday.isoformat() for p in archive["posted"]):
+        return
+    if not archive["items"]:
+        print("From the archive: nothing left to post.")
+        return
+    item = archive["items"].pop(0)
+    stamp = format_datetime(dt.datetime(friday.year, friday.month, friday.day, RELEASE_HOUR, tzinfo=LONDON))
+    guid = f"miteshgandhi-archive-{friday.isoformat()}-{item['id']}"
+    title = f"From the archive: {item['title']}"
+    entry = ("<item>\n"
+             f"<title>{html.escape(title, quote=False)}</title>\n"
+             f"<link>{html.escape(item['link'])}</link>\n"
+             f'<guid isPermaLink="false">{guid}</guid>\n'
+             f"<pubDate>{stamp}</pubDate>\n"
+             f"<description>{html.escape(item['petal'], quote=False)}</description>\n"
+             f"{feed_image(item['image']) if item.get('image') else ''}"
+             "</item>\n")
+    add_to_feed("feed-spirit.xml", entry, stamp)
+    archive["posted"].append({**item, "date": friday.isoformat(), "guid": guid})
+    ARCHIVE_FILE.write_text(json.dumps(archive, indent=2, ensure_ascii=False) + "\n")
+    print(f"From the archive: {item['title']}")
+
+
 def cmd_publish(args):
     now = now_london(args.now)
+    publish_archive(now)
     items = load()
     due = [i for i in items
            if dt.date.fromisoformat(i["date"]) < now.date()

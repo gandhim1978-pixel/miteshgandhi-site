@@ -48,6 +48,10 @@ New pieces are never published straight away. They go into a queue and a GitHub 
 
 When Mitesh asks "what's scheduled?", run `python3 scripts/queue.py list` and show him the dates and titles in plain words. `python3 scripts/queue.py remove <slug>` takes a piece out; to move a date, edit queue/queue.json.
 
+## From the archive (every second Friday)
+
+Every second Friday at 7am (from 23 October 2026) the same Action adds one older spiritual piece to feed-spirit.xml only, titled "From the archive: <title>", with a new unique ID so readers see it as a new post. The list is queue/archive.json, in order: each item has an id (short slug), title, link, petal (same 60 to 100 word shape as above, facts only from the article) and optionally image (an ig/ image name, without .jpg). Posted items move to "posted". `python3 scripts/queue.py list` shows the upcoming archive dates. Show Mitesh new archive petals before saving.
+
 Queued pages are hidden from visitors by _redirects until release. To publish early, run the "Publish queued reflections" Action by hand on GitHub after changing the piece's date to today.
 
 ## Contact
