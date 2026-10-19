@@ -41,9 +41,6 @@ WIDE = 1.4  # photos at least this wide fill the frame; narrower ones are shown 
 SOURCES = {
     "wanted-to-disappear": "mitesh-age4.jpg",
     "stopped-performing": None,
-    "first-ten-seconds": None,
-    "looking-vs-seeing": None,
-    "stillness": None,
 }
 NEVER = {"mitesh.jpg"}
 

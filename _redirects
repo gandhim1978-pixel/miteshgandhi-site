@@ -1,2 +1,4 @@
 # Keep queued reflections private until their release date
 /queue/* / 302
+# Keep the photo library private (reference copies, not for visitors)
+/photos/* / 302

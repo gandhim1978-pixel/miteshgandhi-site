@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /queue/
+Disallow: /photos/
 
 Sitemap: https://miteshgandhi.com/sitemap.xml

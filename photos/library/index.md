@@ -2,7 +2,7 @@
 
 Mitesh's own photos, uploaded 13 to 18 October 2026. These are the versions used on the site: on 18 October, the India, age-four and letter photos were sharpened, and fingers were cropped out of the India photo. The untouched uploads are in `originals/`.
 
-The site still uses its own copies in the site root. This folder is the reference set, so new pieces can reuse these photos (see SOURCES in scripts/og_images.py). Never use `mitesh.jpg` as a default preview image.
+This folder is private: _redirects sends visitors away from /photos/ and robots.txt keeps it out of search. The site still uses its own copies in the site root. This folder is the reference set, so new pieces can reuse these photos (see SOURCES in scripts/og_images.py). Never use `mitesh.jpg` as a default preview image.
 
 | File | Size | What it shows | Used on |
 | --- | --- | --- | --- |
@@ -20,3 +20,8 @@ The uploads as Mitesh sent them, before editing:
 - `originals/india-2001-mitesh.jpg` (900 × 1100): before the crop and sharpening.
 - `originals/mitesh-age4.jpg` (800 × 798): before sharpening.
 - `originals/reflection-letters.jpg` (1080 × 1080): before sharpening.
+
+## Not in the library
+
+- The four clinic photos on the Being Seen pieces (`exam-chair.jpg`, `phoropter-dials.jpg`, `eye-test-patient.jpg`, `clinic-instrument.jpg`, in the site root) are Pexels stock photos, not Mitesh's.
+- Mitesh's Table Mountain, halo, Mother Mary and party photos have never been uploaded to the site. Add them here when he sends them.
