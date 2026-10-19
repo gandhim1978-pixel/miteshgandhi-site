@@ -4,8 +4,8 @@
 Queued pieces live in queue/ (page + any images) and are listed in
 queue/queue.json with a release date. Every Tuesday at 7am UK time a GitHub
 Action runs `publish`, which moves any piece whose date has arrived into the
-site root, adds it to reflections.html and feed.xml (plus feed-spirit.xml for
-Science and Spirit and The Inner Journey), and links the pager.
+site root, adds it to reflections.html and feed.xml (plus feed-spirit.xml,
+except for the pieces in SPIRIT_FEED_SKIP), and links the pager.
 
 Commands:
   python3 scripts/queue.py list
@@ -30,7 +30,8 @@ QUEUE_FILE = QUEUE_DIR / "queue.json"
 LONDON = ZoneInfo("Europe/London")
 RELEASE_HOUR = 7
 TUESDAY = 1  # Monday is 0
-SPIRIT_STRANDS = ("Science and Spirit", "The Inner Journey")  # also go in feed-spirit.xml
+# Every piece also goes in feed-spirit.xml (which posts to Facebook), except these slugs
+SPIRIT_FEED_SKIP = ("two-years", "never-alone", "back-to-school", "teaching")
 
 
 def load():
@@ -164,7 +165,7 @@ def publish_one(item, when):
         listing = listing[:kicker.end(1)] + f" · {strand}" + listing[kicker.end(1):]
     listing_path.write_text(listing)
 
-    # Feeds: every piece goes in feed.xml; Science and Spirit and The Inner Journey also in feed-spirit.xml
+    # Feeds: every piece goes in feed.xml, and in feed-spirit.xml unless skipped
     stamp = format_datetime(when)
     url = f"https://miteshgandhi.com/{name}"
     entry = ("<item>\n"
@@ -175,7 +176,7 @@ def publish_one(item, when):
              f"<description>{html.escape(desc, quote=False)}</description>\n"
              "</item>\n")
     add_to_feed("feed.xml", entry, stamp)
-    if strand in SPIRIT_STRANDS:
+    if slug not in SPIRIT_FEED_SKIP:
         add_to_feed("feed-spirit.xml", entry, stamp)
     print(f"Published {name}: {title}")
 
