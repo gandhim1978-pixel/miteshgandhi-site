@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Social preview images (1200 x 630) for every reflection page.
+"""Social preview images (1200 x 630) and Instagram images for every reflection page.
 
 For each reflection-*.html in the site root and queue/, builds og/<slug>.jpg
 from the page's first photo (or the override in SOURCES) and sets og:image,
@@ -9,6 +9,10 @@ og:image:width, og:image:height and twitter:image on the page.
 - Portrait or squarish photos are never cropped: the whole photo sits on a
   cobalt background with the kicker and title beside it, so faces stay in frame.
 - Pages with no suitable photo get a cobalt title card. mitesh.jpg is never used.
+
+It also makes ig/<slug>.jpg, 1080 wide, for the image in feed-spirit.xml
+(which posts to Instagram): the article's photo uncropped, with cobalt at the
+sides if it is taller than Instagram's 4:5 limit.
 
 Run: python3 scripts/og_images.py   (re-run after adding or changing a piece)
 """
@@ -20,6 +24,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "og"
+IG_OUT = ROOT / "ig"
+IG_W = 1080
+IG_TALLEST = 4 / 5  # Instagram crops anything taller than 4:5
 FONTS = Path(__file__).resolve().parent / "fonts"
 W, H = 1200, 630
 COBALT_DEEP = (18, 31, 85)
@@ -99,6 +106,26 @@ def build(photo, kicker, title):
     return img
 
 
+def build_ig(photo, kicker, title):
+    if photo is None:
+        img = Image.new("RGB", (IG_W, round(IG_W / IG_TALLEST)), COBALT_DEEP)
+        global W, H
+        W, H = img.size
+        try:
+            draw_text(img, kicker, title, 90, IG_W - 180, size=96)
+        finally:
+            W, H = 1200, 630
+        return img
+    src = Image.open(photo).convert("RGB")
+    if src.width / src.height >= IG_TALLEST:
+        return src.resize((IG_W, round(src.height * IG_W / src.width)), Image.LANCZOS)
+    h = round(IG_W / IG_TALLEST)
+    src = src.resize((round(src.width * h / src.height), h), Image.LANCZOS)
+    img = Image.new("RGB", (IG_W, h), COBALT_DEEP)
+    img.paste(src, ((IG_W - src.width) // 2, 0))
+    return img
+
+
 def first_photo(text):
     for name in re.findall(r'<img src="/([^"/]+)"', text):
         if name not in NEVER:
@@ -132,6 +159,7 @@ def set_meta(text, slug):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    IG_OUT.mkdir(exist_ok=True)
     pages = sorted(ROOT.glob("reflection-*.html")) + sorted((ROOT / "queue").glob("reflection-*.html"))
     for page in pages:
         slug = page.stem.removeprefix("reflection-")
@@ -139,7 +167,9 @@ def main():
         kicker = html.unescape(re.search(r'<p class="kicker">(.*?)</p>', text).group(1))
         title = html.unescape(re.search(r"<h1>(.*?)</h1>", text, re.S).group(1)).strip()
         name = SOURCES[slug] if slug in SOURCES else first_photo(text)
-        build(find(name) if name else None, kicker, title).save(OUT / f"{slug}.jpg", quality=86, optimize=True, progressive=True)
+        photo = find(name) if name else None
+        build(photo, kicker, title).save(OUT / f"{slug}.jpg", quality=86, optimize=True, progressive=True)
+        build_ig(photo, kicker, title).save(IG_OUT / f"{slug}.jpg", quality=88, optimize=True, progressive=True)
         page.write_text(set_meta(text, slug))
         print(f"og/{slug}.jpg  <-  {name or 'title card'}")
 

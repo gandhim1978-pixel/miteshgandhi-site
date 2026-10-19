@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
 <channel>
 <title>Mitesh Gandhi | Reflections</title>
 <link>https://miteshgandhi.com/reflections.html</link>
@@ -13,6 +13,8 @@
 <guid isPermaLink="true">https://miteshgandhi.com/reflection-tree-of-life.html</guid>
 <pubDate>Sun, 18 Oct 2026 20:00:00 +0100</pubDate>
 <description>Every day I look into the eye and see an optic disc, branching vessels, a cross behind the eyes. Science explains the how. Meditation lets me wonder at the why.</description>
+<enclosure url="https://miteshgandhi.com/ig/tree-of-life.jpg" length="261941" type="image/jpeg"/>
+<media:content url="https://miteshgandhi.com/ig/tree-of-life.jpg" medium="image" type="image/jpeg" width="1080" height="1350"/>
 </item>
 </channel>
 </rss>

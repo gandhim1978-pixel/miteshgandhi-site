@@ -174,19 +174,42 @@ def publish_one(item, when):
     stamp = format_datetime(when)
     url = f"https://miteshgandhi.com/{name}"
 
-    def entry(description):
+    def entry(description, image=""):
         return ("<item>\n"
                 f"<title>{html.escape(title, quote=False)}</title>\n"
                 f"<link>{url}</link>\n"
                 f'<guid isPermaLink="true">{url}</guid>\n'
                 f"<pubDate>{stamp}</pubDate>\n"
                 f"<description>{html.escape(description, quote=False)}</description>\n"
+                f"{image}"
                 "</item>\n")
     add_to_feed("feed.xml", entry(desc), stamp)
     if slug not in SPIRIT_FEED_SKIP:
         # The spirit feed carries the short "petal" version; the full piece stays on the site
-        add_to_feed("feed-spirit.xml", entry(item.get("petal", desc)), stamp)
+        add_to_feed("feed-spirit.xml", entry(item.get("petal", desc), feed_image(slug)), stamp)
     print(f"Published {name}: {title}")
+
+
+def jpeg_size(data):
+    """Width and height of a JPEG (the publish Action has no image library)."""
+    i = 2
+    while i < len(data):
+        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], "big")
+        if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + length
+    raise ValueError("not a JPEG")
+
+
+def feed_image(slug):
+    """The article's photo for feed-spirit.xml (made by scripts/og_images.py), for Instagram."""
+    path = ROOT / "ig" / f"{slug}.jpg"
+    if not path.exists():
+        return ""
+    url = f"https://miteshgandhi.com/ig/{slug}.jpg"
+    w, h = jpeg_size(path.read_bytes())
+    return (f'<enclosure url="{url}" length="{path.stat().st_size}" type="image/jpeg"/>\n'
+            f'<media:content url="{url}" medium="image" type="image/jpeg" width="{w}" height="{h}"/>\n')
 
 
 def add_to_feed(filename, entry, stamp):
