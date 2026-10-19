@@ -157,6 +157,8 @@ def publish_one(item, when):
     text, n = re.subn(r'<nav class="pager">.*?</nav>', pager, text, count=1, flags=re.S)
     if not n:
         sys.exit(f"{name} has no pager nav.")
+    # Search label: the real release date
+    text = re.sub(r'"datePublished": "[^"]*"', f'"datePublished": "{when.date().isoformat()}"', text)
     (ROOT / name).write_text(text)
     src.unlink()
     for f in item["files"]:

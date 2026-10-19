@@ -22,6 +22,8 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+import seo
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "og"
 IG_OUT = ROOT / "ig"
@@ -178,6 +180,7 @@ def main():
         build_ig(photo, kicker, title).save(IG_OUT / f"{slug}.jpg", quality=88, optimize=True, progressive=True)
         page.write_text(set_meta(text, slug))
         print(f"og/{slug}.jpg  <-  {name or 'title card'}")
+    seo.main()
 
 
 if __name__ == "__main__":
