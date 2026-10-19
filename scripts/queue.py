@@ -19,6 +19,10 @@ Commands:
   python3 scripts/queue.py add <slug> --label "Turning Points 02" [--summary "..."] [--petal "..."] [--date YYYY-MM-DD]
   python3 scripts/queue.py remove <slug>
   python3 scripts/queue.py publish [--now YYYY-MM-DDTHH:MM]
+  python3 scripts/queue.py sitemap
+
+`publish` also rebuilds sitemap.xml (every public page; queued pages are left
+out until release) whenever a reflection is released.
 """
 import argparse
 import datetime as dt
@@ -27,7 +31,7 @@ import json
 import re
 import shutil
 import sys
-from email.utils import format_datetime
+from email.utils import format_datetime, parsedate_to_datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -280,6 +284,35 @@ def publish_archive(now):
     print(f"From the archive: {item['title']}")
 
 
+SITE = "https://miteshgandhi.com"
+SITEMAP_PAGES = ("index.html", "story.html", "reflections.html", "blog.html")
+
+
+def build_sitemap():
+    """sitemap.xml: the main pages plus every released reflection, dated from feed.xml."""
+    feed = (ROOT / "feed.xml").read_text()
+    dates = {}
+    for link, stamp in re.findall(r"<link>[^<]*/([^/<]+\.html)</link>\s*<guid[^>]*>[^<]*</guid>\s*<pubDate>([^<]+)</pubDate>", feed):
+        dates[link] = parsedate_to_datetime(stamp).date().isoformat()
+    pages = [p for p in SITEMAP_PAGES if (ROOT / p).exists()]
+    pages += sorted((p.name for p in ROOT.glob("reflection-*.html")), key=lambda n: dates.get(n, ""), reverse=True)
+    if dates:
+        dates["reflections.html"] = max(dates.values())
+    rows = []
+    for name in pages:
+        url = f"{SITE}/" if name == "index.html" else f"{SITE}/{name}"
+        lastmod = f"<lastmod>{dates[name]}</lastmod>" if name in dates else ""
+        rows.append(f"  <url><loc>{url}</loc>{lastmod}</url>")
+    (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
+                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                      + "\n".join(rows) + "\n</urlset>\n")
+
+
+def cmd_sitemap(args):
+    build_sitemap()
+    print("Rebuilt sitemap.xml")
+
+
 def cmd_publish(args):
     now = now_london(args.now)
     publish_archive(now)
@@ -294,6 +327,7 @@ def cmd_publish(args):
         date = dt.date.fromisoformat(item["date"])
         publish_one(item, dt.datetime(date.year, date.month, date.day, RELEASE_HOUR, tzinfo=LONDON))
     save([i for i in items if i not in due])
+    build_sitemap()
 
 
 def main():
@@ -313,6 +347,7 @@ def main():
     pub = sub.add_parser("publish")
     pub.add_argument("--now", help="Pretend it is this UK time, for testing")
     pub.set_defaults(fn=cmd_publish)
+    sub.add_parser("sitemap").set_defaults(fn=cmd_sitemap)
     args = p.parse_args()
     args.fn(args)
 

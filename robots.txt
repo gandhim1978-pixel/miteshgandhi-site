@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /queue/
+
+Sitemap: https://miteshgandhi.com/sitemap.xml
