@@ -40,7 +40,6 @@ WIDE = 1.4  # photos at least this wide fill the frame; narrower ones are shown 
 # Page slug -> photo to use instead of the page's first photo (None = title card)
 SOURCES = {
     "wanted-to-disappear": "mitesh-age4.jpg",
-    "stopped-performing": None,
 }
 NEVER = {"mitesh.jpg"}
 
