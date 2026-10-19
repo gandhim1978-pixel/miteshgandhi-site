@@ -162,7 +162,10 @@ def publish_one(item, when):
     (ROOT / name).write_text(text)
     src.unlink()
     for f in item["files"]:
-        shutil.move(str(QUEUE_DIR / f), str(ROOT / f))
+        if (QUEUE_DIR / f).exists():
+            shutil.move(str(QUEUE_DIR / f), str(ROOT / f))
+        elif not (ROOT / f).exists():  # a photo shared with an earlier piece is already live
+            sys.exit(f"{f} is missing from queue/.")
 
     # Previous page: add a "next" link if it lacks one
     if prev:

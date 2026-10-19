@@ -42,6 +42,8 @@ SOURCES = {
     "wanted-to-disappear": "mitesh-age4.jpg",
 }
 NEVER = {"mitesh.jpg"}
+# Pages whose wide photo is shown whole beside the title, because a crop would lose its subject
+WHOLE = {"busy-mind"}
 
 
 def font(name, size):
@@ -84,14 +86,14 @@ def draw_text(img, kicker, title, x, width, size=76):
     draw.text((x, y + 30), "miteshgandhi.com", font=font("Figtree-SemiBold.ttf", 22), fill=(154, 164, 201))
 
 
-def build(photo, kicker, title):
+def build(photo, kicker, title, whole=False):
     img = Image.new("RGB", (W, H), COBALT_DEEP)
     if photo is None:
         draw_text(img, kicker, title, 110, W - 220, size=104)
         return img
     src = Image.open(photo).convert("RGB")
     ratio = src.width / src.height
-    if ratio >= WIDE:
+    if ratio >= WIDE and not whole:
         scale = max(W / src.width, H / src.height)
         src = src.resize((round(src.width * scale), round(src.height * scale)), Image.LANCZOS)
         left, top = (src.width - W) // 2, (src.height - H) // 2
@@ -172,7 +174,7 @@ def main():
         title = html.unescape(re.search(r"<h1>(.*?)</h1>", text, re.S).group(1)).strip()
         name = SOURCES[slug] if slug in SOURCES else first_photo(text)
         photo = find(name) if name else None
-        build(photo, kicker, title).save(OUT / f"{slug}.jpg", quality=86, optimize=True, progressive=True)
+        build(photo, kicker, title, slug in WHOLE).save(OUT / f"{slug}.jpg", quality=86, optimize=True, progressive=True)
         build_ig(photo, kicker, title).save(IG_OUT / f"{slug}.jpg", quality=88, optimize=True, progressive=True)
         page.write_text(set_meta(text, slug))
         print(f"og/{slug}.jpg  <-  {name or 'title card'}")
