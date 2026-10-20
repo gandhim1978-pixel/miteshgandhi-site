@@ -5,8 +5,15 @@
 <description>Weekly reflections from an optometrist on the art of seeing, and being seen.</description>
 <language>en-gb</language>
 <atom:link href="https://miteshgandhi.com/feed.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sun, 18 Oct 2026 20:00:00 +0100</lastBuildDate>
+<lastBuildDate>Tue, 20 Oct 2026 07:00:00 +0100</lastBuildDate>
 <!--  NEW ITEMS GO HERE, newest first. Release one reflection per week.  -->
+<item>
+<title>From the quiet son to live on BBC Radio</title>
+<link>https://miteshgandhi.com/reflection-radio.html</link>
+<guid isPermaLink="true">https://miteshgandhi.com/reflection-radio.html</guid>
+<pubDate>Tue, 20 Oct 2026 07:00:00 +0100</pubDate>
+<description>BBC Radio Cambridgeshire, 2019, live. If you'd told my younger self, the quiet son who never spoke up, he'd have laughed. So what changed?</description>
+</item>
 <item>
 <title>The tree of life in the eye</title>
 <link>https://miteshgandhi.com/reflection-tree-of-life.html</link>
