@@ -1,14 +1,6 @@
 {
   "items": [
     {
-      "id": "ascent",
-      "title": "The Rise and Fall of Our Ascent",
-      "link": "https://superhumanscoming.blogspot.com/2026/10/the-rise-and-fall-of-our-ascent.html",
-      "petal": "There is a moment when you realise you are rising.\n\nYou feel lighter. The mind becomes quieter. And then, without noticing, you begin to fall. Not suddenly. Just a little less meditation, a little more ego, a little more attention on the world outside.\n\nIn Sahaja Yoga, Self-Realisation is not the destination. It is the beginning of our ascent. And we don't have to fight our way back: we return to meditation, and allow the Kundalini to do the work.\n\nRise. Fall. Watch. Correct. Grow.\n\nHow quickly do you notice that you have fallen, and turn back towards the centre?",
-      "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKWUbz60BLrQC-96IhF746B_KlQ8ViV2VIKi8uuFHmquD4rlLXoWlXYy3VKIztPdGTZmSl9RVv4n0ueiOoE1A1Fhx7ALx1f9DjRdnV9ddSv2Jih1jwrr36cuKMgUd81HaRxujVCMyHwRneEroejEbqheoOXIzKJmBTV1-99v5gXHjgZVvcRxPb1tCg7OI/s1600/106538.jpg",
-      "image": "archive-ascent"
-    },
-    {
       "id": "left-side",
       "title": "The Left Side: How Do We Overcome It?",
       "link": "https://superhumanscoming.blogspot.com/2026/10/the-left-side-how-do-we-overcome-it.html",
@@ -121,5 +113,16 @@
       "image": "archive-attention-acts"
     }
   ],
-  "posted": []
+  "posted": [
+    {
+      "id": "ascent",
+      "title": "The Rise and Fall of Our Ascent",
+      "link": "https://superhumanscoming.blogspot.com/2026/10/the-rise-and-fall-of-our-ascent.html",
+      "petal": "There is a moment when you realise you are rising.\n\nYou feel lighter. The mind becomes quieter. And then, without noticing, you begin to fall. Not suddenly. Just a little less meditation, a little more ego, a little more attention on the world outside.\n\nIn Sahaja Yoga, Self-Realisation is not the destination. It is the beginning of our ascent. And we don't have to fight our way back: we return to meditation, and allow the Kundalini to do the work.\n\nRise. Fall. Watch. Correct. Grow.\n\nHow quickly do you notice that you have fallen, and turn back towards the centre?",
+      "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKWUbz60BLrQC-96IhF746B_KlQ8ViV2VIKi8uuFHmquD4rlLXoWlXYy3VKIztPdGTZmSl9RVv4n0ueiOoE1A1Fhx7ALx1f9DjRdnV9ddSv2Jih1jwrr36cuKMgUd81HaRxujVCMyHwRneEroejEbqheoOXIzKJmBTV1-99v5gXHjgZVvcRxPb1tCg7OI/s1600/106538.jpg",
+      "image": "archive-ascent",
+      "date": "2026-10-23",
+      "guid": "miteshgandhi-archive-2026-10-23-ascent"
+    }
+  ]
 }
